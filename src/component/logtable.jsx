@@ -47,7 +47,7 @@ class LogTable extends React.Component {
         <table>
           <colgroup>
             {Object.keys(this.state.content[0]).map((entry, i) =>
-              <col key={`col-${i}`} className={`column-${i}`} style={{ width: `calc(100% / ${Object.keys(this.state.content[0]).length})` }} />
+              <col key={`col-${i}`} style={{ width: `calc(100% / ${Object.keys(this.state.content[0]).length})` }} />
             )}
           </colgroup>
           <LogTableHead header={this.state.content[0]} headClick={this.sort} sortedByKey={this.sortedByKey} />

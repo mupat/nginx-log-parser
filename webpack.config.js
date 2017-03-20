@@ -36,7 +36,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.ejs',
-      title: 'Nginx Log Parser',
+      title: 'Nginx Logfile Visualizer',
       chunks: ['app']
     }),
     new ExtractTextPlugin({

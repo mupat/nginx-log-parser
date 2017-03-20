@@ -28,7 +28,7 @@ class Parser {
       return this.parser(line);
     })
     .filter(line => { // filter by german ip address
-      return this.ipChecker.isGerman(line.remote_addr)
+      return this.ipChecker.isGerman(line.remote_addr);
     })
     .then(content => { // give back parsed content
       this.answer(content);

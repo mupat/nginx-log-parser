@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mupat/nginx-log-parser.git"
+    "url": "git+https://github.com/mupat/nginx-logfile-visualizer.git"
   },
   "author": "Mupat (dev@mupat.net)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mupat/nginx-log-parser/issues"
+    "url": "https://github.com/mupat/nginx-logfile-visualizer/issues"
   },
-  "homepage": "https://github.com/mupat/nginx-log-parser#readme",
+  "homepage": "https://github.com/mupat/nginx-logfile-visualizer#readme",
   "dependencies": {
     "bluebird": "^3.5.0",
     "nginx-log-parser": "0.0.4",

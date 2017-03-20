@@ -5,10 +5,10 @@ class IPChecker {
 
   isGerman(ip) {
     const response = this.fetch(`https://ipapi.co/${ip}/country`)
-    .then(response => {
-      return response === 'DE'
-    })
-    .catch(this._error.bind(this));
+      .then(response => {
+        return response === 'DE'
+      })
+      .catch(this._error.bind(this));
 
     return response;
   }
