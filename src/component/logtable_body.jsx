@@ -1,4 +1,5 @@
 import React from 'react';
+import './logtable_body.scss';
 
 class LogTableBody extends React.Component {
   constructor(props) {
@@ -7,11 +8,11 @@ class LogTableBody extends React.Component {
 
   render() {
     return (
-      <tbody>
+      <tbody className='logtable-body'>
         {this.props.rows.map((row, i) =>
           <tr key={`row-${i}`}>
             {Object.keys(row).map((key, j) =>
-              <td key={`entry-${j}`}>{row[key]}</td>
+              <td title={row[key]} key={`entry-${j}`}>{row[key]}</td>
             )}
           </tr>
         )}

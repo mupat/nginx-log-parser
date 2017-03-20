@@ -1,4 +1,5 @@
 import React from 'react';
+import './logtable_head.scss';
 
 class LogTableHead extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class LogTableHead extends React.Component {
 
   render() {
     return (
-      <thead onClick={this.click}>
+      <thead className='logtable-head' onClick={this.click}>
         <tr>
           {Object.keys(this.props.header).map((key, i) =>
             <th key={`header-${i}`} data-key={key}>{this.transform(key)} {this.props.sortedByKey(key)}</th>

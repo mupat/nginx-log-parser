@@ -1,0 +1,16 @@
+.logtable-body {
+  tr:nth-child(odd) td {
+    background-color: lightgrey;
+  }
+
+  td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 20px 10px;
+    white-space: nowrap;
+
+    &:not(:last-of-type) {
+      border-right: 3px solid lightcoral;
+    }
+  }
+}

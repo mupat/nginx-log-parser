@@ -1,0 +1,28 @@
+.logtable {
+  table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-collapse: collapse;
+  }
+
+  input[type=search] {
+    width: 500px;
+    border: none;
+    border-bottom: 3px solid lightcoral;
+    padding: 0 20px;
+    line-height: 30px;
+    font-size: 18px;
+    margin: 0;
+    outline: none;
+    position: absolute;
+    top: 35px;
+    right: 25px;
+  }
+
+  span {
+    position: absolute;
+    top: 75px;
+    right: 25px;
+  }
+}

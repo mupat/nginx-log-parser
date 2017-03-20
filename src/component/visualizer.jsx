@@ -1,5 +1,6 @@
 import React from 'react';
 import LogTable from './logtable';
+import './visualizer.scss';
 
 class Visualizer extends React.Component {
   constructor(props) {
@@ -19,9 +20,10 @@ class Visualizer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='visualizer'>
         <h1> Nginx Log Parser </h1>
-        <input type='file' onChange={this.file} />
+        <input id='file' type='file' onChange={this.file} />
+        <button type='button' onClick={() => document.getElementById('file').click()}>Choose Logfile</button>
         <LogTable file_content={this.state.file_content} />
       </div>
     )
