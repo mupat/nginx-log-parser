@@ -14,11 +14,11 @@ npm start # to start dev server on port 5000
 npm run build # to build the app to the `dist` folder
 ```
 
-# TODO:
+## TODO
 They are a couple of things to do, to improve the usage and performance.
 
-[ ] Add tests to make sure it works as it should
-[ ] Make filter by german ip address optional
-[ ] Allow filter by other countries
-[ ] Try to filter ips by not using a third party api or at least have a bulk check endpoint to avoid a http call for every single line
-[ ] Paginate result, to allow to work with larger log files
+- [ ] Add tests to make sure it works as it should
+- [ ] Make filter by german ip address optional
+- [ ] Allow filter by other countries
+- [ ] Try to filter ips by not using a third party api or at least have a bulk check endpoint to avoid a http call for every single line
+- [ ] Paginate result, to allow to work with larger log files
