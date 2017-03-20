@@ -1,7 +1,7 @@
 import React from 'react';
-import LogTableHead from './logtable_head';
-import LogTableBody from './logtable_body';
-import './logtable.scss';
+import LogTableHead from './../log_table_head/component';
+import LogTableBody from './../log_table_body/component';
+import './style.scss';
 
 class LogTable extends React.Component {
   constructor(props) {
@@ -44,15 +44,17 @@ class LogTable extends React.Component {
       <div className='logtable'>
         <input type='search' onChange={this.filter} placeholder='Filter Rows'/>
         <span>{this.state.content.length} entries</span>
-        <table>
-          <colgroup>
-            {Object.keys(this.state.content[0]).map((entry, i) =>
-              <col key={`col-${i}`} style={{ width: `calc(100% / ${Object.keys(this.state.content[0]).length})` }} />
-            )}
-          </colgroup>
-          <LogTableHead header={this.state.content[0]} headClick={this.sort} sortedByKey={this.sortedByKey} />
-          <LogTableBody rows={this.state.content} />
-        </table>
+        { this.state.content.length > 0 &&
+          <table>
+            <colgroup>
+              {Object.keys(this.state.content[0]).map((entry, i) =>
+                <col key={`col-${i}`} style={{ width: `calc(100% / ${Object.keys(this.state.content[0]).length})` }} />
+              )}
+            </colgroup>
+            <LogTableHead header={this.state.content[0]} headClick={this.sort} sortedByKey={this.sortedByKey} />
+            <LogTableBody rows={this.state.content} />
+          </table>
+        }
       </div>
     )
   }

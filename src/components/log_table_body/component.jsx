@@ -1,5 +1,5 @@
 import React from 'react';
-import './logtable_body.scss';
+import './style.scss';
 
 class LogTableBody extends React.Component {
   constructor(props) {

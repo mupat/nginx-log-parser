@@ -1,6 +1,6 @@
 import React from 'react';
-import LogTable from './logtable';
-import './visualizer.scss';
+import LogTable from './../log_table/component';
+import './style.scss';
 
 class Visualizer extends React.Component {
   constructor(props) {
