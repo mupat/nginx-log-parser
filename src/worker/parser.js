@@ -9,59 +9,30 @@ class Parser {
   }
 
   listen() {
-    this.context.addEventListener('message', this.action.bind(this), false);
+    this.context.addEventListener('message', this._parse.bind(this), false);
   }
 
-  action(event) {
-    switch (event.data.action) {
-      case 'read':
-        this._parse(event.data.file);
-        break;
-      case 'filter':
-        this._filter(event.data.criteria);
-        break;
-      case 'sort':
-        this._sort(event.data.key, event.data.ascending);
-        break;
-      default:
-        this.answer('no registered action given', false);
-    }
+  answer(data) {
+    this.context.postMessage(data);
   }
 
-  answer(data, state = true) {
-    this.context.postMessage({ success: state, content: data });
-  }
-
-  _parse(file) {
-    this.file.read(file)
-    .then(fileContent => {
+  _parse(event) {
+    this.file.read(event.data)
+    .then(fileContent => { //split content by new line to get single lines
       return fileContent.split("\n");
     })
-    .then(content => {
+    .then(content => { // filter out empty lines
+      return content.filter(line => line.length > 0)
+    })
+    .then(content => { // parse line to nginx object
       return content.map(line => this.parser(line));
     })
-    .then(content => {
-      this.content = content;
+    .then(content => { // give back parsed content
       this.answer(content);
     })
-  }
-
-  _filter(criteria) {
-    const lines = !this.content ? [] : this.content.filter((line) => {
-      return Object.keys(line)
-        .map(key => line[key].includes(criteria))
-        .reduce((last, current) => { return last ? last : current }, false);
-    });
-    this.answer(lines);
-  }
-
-  _sort(key, ascending) {
-    const lines = !this.content ? [] : this.content.sort((a, b) => {
-      if(a[key] < b[key]) { return ascending ? -1 : 1 };
-      if(a[key] > b[key]) { return ascending ? 1 : -1 };
-      return 0;
-    });
-    this.answer(lines);
+    .catch(error => {
+      console.error('couldnt read file', error);
+    })
   }
 }
 

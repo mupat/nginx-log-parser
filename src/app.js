@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import NginxParser from './component/main'
+import Visualizer from './component/visualizer'
 const worker = new Worker('worker.js');
 
-ReactDOM.render(<NginxParser worker={worker}/>, document.getElementById('root'));
+ReactDOM.render(<Visualizer worker={worker}/>, document.getElementById('root'));
