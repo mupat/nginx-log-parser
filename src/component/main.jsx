@@ -6,8 +6,10 @@ class NginxParser extends React.Component {
     this.worker = this.props.worker;
     this.file = this.file.bind(this);
     this.search = this.search.bind(this);
+    this.sort = this.sort.bind(this);
     this.state = {
-      content: []
+      content: [],
+      sort: undefined
     }
 
     this.worker.addEventListener('message', this.message.bind(this), false);
@@ -29,7 +31,15 @@ class NginxParser extends React.Component {
     this.worker.postMessage({ action: 'filter', criteria: event.target.value });
   }
 
+  sort(key) {
+    let sort = {}
+    sort[key] = this.state.sort ? !this.state.sort[key] : true
+    this.setState({ sort: sort });
+    this.worker.postMessage({ action: 'sort', key: key, ascending: sort[key] });
+  }
+
   render() {
+    const self = this;
     return (
       <div>
         <h1> Nginx Log Parser </h1>
@@ -39,7 +49,7 @@ class NginxParser extends React.Component {
           <thead>
             <tr>
               {this.state.content[0] ? Object.keys(this.state.content[0]).map((key, i) =>
-                <th key={`header-${i}`}>{key}</th>
+                <th key={`header-${i}`} onClick={() => self.sort(key)}>{key}</th>
               ) : ''}
             </tr>
           </thead>

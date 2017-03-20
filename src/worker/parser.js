@@ -20,6 +20,9 @@ class Parser {
       case 'filter':
         this._filter(event.data.criteria);
         break;
+      case 'sort':
+        this._sort(event.data.key, event.data.ascending);
+        break;
       default:
         this.answer('no registered action given', false);
     }
@@ -48,6 +51,15 @@ class Parser {
       return Object.keys(line)
         .map(key => line[key].includes(criteria))
         .reduce((last, current) => { return last ? last : current }, false);
+    });
+    this.answer(lines);
+  }
+
+  _sort(key, ascending) {
+    const lines = !this.content ? [] : this.content.sort((a, b) => {
+      if(a[key] < b[key]) { return ascending ? -1 : 1 };
+      if(a[key] > b[key]) { return ascending ? 1 : -1 };
+      return 0;
     });
     this.answer(lines);
   }
