@@ -5,10 +5,13 @@ const dist = path.join(__dirname, 'dist');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
-  entry: './index.js',
+  entry: {
+    app: './index.js',
+    worker: './worker.js'
+  },
   output: {
     path: dist,
-    filename: 'app.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -27,7 +30,11 @@ module.exports = {
   watch: true,
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Nginx Log Parser'
+      title: 'Nginx Log Parser',
+      chunks: ['app']
     })
-  ]
+  ],
+  resolve : {
+    extensions: ['.js', '.jsx']
+  }
 };
