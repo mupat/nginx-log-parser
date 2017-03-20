@@ -5,6 +5,7 @@ class NginxParser extends React.Component {
     super(props);
     this.worker = this.props.worker;
     this.file = this.file.bind(this);
+    this.search = this.search.bind(this);
     this.state = {
       content: []
     }
@@ -13,11 +14,19 @@ class NginxParser extends React.Component {
   }
 
   message(event) {
-    this.setState({ content: event.data });
+    if(event.data.success) {
+      this.setState({ content: event.data.content });
+    } else {
+      console.error(event.data.content);
+    }
   }
 
   file(event) {
-    this.worker.postMessage({action: 'read', file: event.target.files[0]});
+    this.worker.postMessage({ action: 'read', file: event.target.files[0] });
+  }
+
+  search(event) {
+    this.worker.postMessage({ action: 'filter', criteria: event.target.value });
   }
 
   render() {
@@ -25,6 +34,7 @@ class NginxParser extends React.Component {
       <div>
         <h1> Nginx Log Parser </h1>
         <input type='file' onChange={this.file} />
+        <input type='search' onChange={this.search} />
         <table>
           <thead>
             <tr>

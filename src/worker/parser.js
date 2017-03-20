@@ -17,16 +17,16 @@ class Parser {
       case 'read':
         this._parse(event.data.file);
         break;
-      case 'find':
-        this.answer('find');
+      case 'filter':
+        this._filter(event.data.criteria);
         break;
       default:
-        this.answer('no registered action given');
+        this.answer('no registered action given', false);
     }
   }
 
-  answer(message) {
-    this.context.postMessage(message);
+  answer(data, state = true) {
+    this.context.postMessage({ success: state, content: data });
   }
 
   _parse(file) {
@@ -41,6 +41,15 @@ class Parser {
       this.content = content;
       this.answer(content);
     })
+  }
+
+  _filter(criteria) {
+    const lines = !this.content ? [] : this.content.filter((line) => {
+      return Object.keys(line)
+        .map(key => line[key].includes(criteria))
+        .reduce((last, current) => { return last ? last : current }, false);
+    });
+    this.answer(lines);
   }
 }
 
