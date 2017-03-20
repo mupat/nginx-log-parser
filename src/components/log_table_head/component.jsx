@@ -22,7 +22,7 @@ class LogTableHead extends React.Component {
       <thead className='logtable-head' onClick={this.click}>
         <tr>
           {Object.keys(this.props.header).map((key, i) =>
-            <th key={`header-${i}`} data-key={key}>{this.transform(key)} {this.props.sortedByKey(key)}</th>
+            <th key={`header-${i}`} data-key={key} className={this.props.sortedByKey(key)}>{this.transform(key)}</th>
           )}
         </tr>
       </thead>

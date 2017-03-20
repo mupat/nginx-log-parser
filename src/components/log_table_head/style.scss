@@ -7,5 +7,20 @@
     padding: 20px 10px;
     text-align: center;
     vertical-align: bottom;
+    position: relative;
+    cursor: pointer;
+
+    &.asc::after,
+    &.desc::after {
+      content: '\02C4';
+      position: absolute;
+      top: 35px;
+      right: 5px;
+      font-size: 30px;
+    }
+
+    &.desc::after {
+      content: '\02C5';
+    }
   }
 }
