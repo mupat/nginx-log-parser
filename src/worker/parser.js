@@ -21,17 +21,20 @@ class Parser {
     .then(fileContent => { //split content by new line to get single lines
       return fileContent.split("\n");
     })
-    .then(content => { // filter out empty lines
-      return content.filter(line => line.length > 0)
+    .filter(line => { // filter out empty lines
+      return line.length > 0
     })
-    .then(content => { // parse line to nginx object
-      return content.map(line => this.parser(line));
+    .map(line => { // parse line to nginx object
+      return this.parser(line);
+    })
+    .filter(line => { // filter by german ip address
+      return this.ipChecker.isGerman(line.remote_addr)
     })
     .then(content => { // give back parsed content
       this.answer(content);
     })
     .catch(error => {
-      console.error('couldnt read file', error);
+      console.error('couldnt parse file', error);
     })
   }
 }
