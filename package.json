@@ -1,5 +1,5 @@
 {
-  "name": "nginx-log-parser",
+  "name": "nginx-logfile-visualizer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/mupat/nginx-log-parser#readme",
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "nginx-log-parser": "0.0.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "reqwest": "^2.0.5"

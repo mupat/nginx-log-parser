@@ -6,7 +6,7 @@ const dist = path.join(__dirname, 'dist');
 module.exports = {
   context: path.join(__dirname, 'src'),
   entry: {
-    app: './index.js',
+    app: './app.js',
     worker: './worker.js'
   },
   output: {
@@ -30,6 +30,7 @@ module.exports = {
   watch: true,
   plugins: [
     new HtmlWebpackPlugin({
+      template: './index.ejs',
       title: 'Nginx Log Parser',
       chunks: ['app']
     })
