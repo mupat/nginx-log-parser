@@ -7,6 +7,9 @@ Simple app to visualize an uploaded nginx log file. The parsing of the log file 
 > **HINT**
 > Its using [ipapi](https://ipapi.co/) to check if ip is a german ip address. So beware that its just using the free tier.
 
+> **HINT**
+> Only tested on latest Opera and Chrome
+
 # Get Started
 ```
 npm install
